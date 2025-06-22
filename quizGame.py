@@ -5,11 +5,15 @@ import os
 print("🌍 Welcome, brave explorer! You've stumbled upon the gates of the **Linux Temple** 🏛️, where only the wise survive the command-line challenge! 🧠⚔️")
 print("To earn your title as a Terminal Tactician 🧙‍♀️, you must prove your knowledge in the ancient art of Linux!")
 
-play = input("🎒 Do you dare to begin this journey? (yes/no) 👣: ").strip().lower()
-
-if play != "yes":
-    print("😌 No problem, traveler. Return when you're ready to unlock the secrets of the shell. 🐚🗝️\n")
-    quit()
+while True:
+    play = input("🎒 Do you dare to begin this journey? 👣: ").strip().lower()
+    if play in ["yes", "y", "yess", "yesss", "yeah", "yup", "sure"]:
+        break  #start
+    elif play in ["no", "n", "nope", "nah"]:
+        print("😌 No problem, traveler. Return when you're ready to unlock the secrets of the shell. 🐚🗝️\n")
+        quit()
+    else:
+        print("❓ Sorry, I didn't get that. Please answer with 'yes' or 'no'.")#back to input
 
 print("🔥 Your journey begins now... May the `man` pages guide you. 📜🐧\n")
 
