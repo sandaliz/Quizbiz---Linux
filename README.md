@@ -21,13 +21,13 @@ This Python-based terminal game puts your Linux knowledge to the test — and cr
 1. Clone this repository:
 
 terminal:
-  | git clone https://github.com/sandaliz/linux-temple-quiz.git
-  | cd linux-temple-quiz
+  | git clone https://github.com/sandaliz/Quizbiz---Linux.git
+  | cd Quizbiz---Linux
   
 2. Run the game using Python 3:
 
 terminal:
-  | python3 quiz_game.py
+  | python3 quizGame.py
 
 3. Follow the prompts in the terminal and type your answers.
   * You can type quit anytime to exit
