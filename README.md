@@ -52,5 +52,15 @@ If it shows something like Python 3.11.4, you're all set! ✨
 Download Python from the official site:
 👉 https://www.python.org/downloads/
 
-📸 Preview
+---
+
+### 📸 Preview
 <img width="1033" alt="Screenshot 2025-06-22 at 11 48 28" src="https://github.com/user-attachments/assets/82c8665e-2048-40c3-8105-01e23e67b85c" />
+
+---
+
+###🌟 Support & Contributions
+⭐ Star this repo if you enjoyed the game!
+🛠️ Want to add new questions or features? Pull requests are welcome!
+
+
