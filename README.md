@@ -1,4 +1,4 @@
-# 🐧 Linux Temple Quiz 🧠⚔️
+# Beginner Python - Linux Temple Quiz 🧠⚔️
 
 Welcome, brave explorer! 🌍  
 You've stumbled upon the sacred **Linux Temple**, where only the wisest can survive the command-line challenge! 🏛️  
@@ -9,7 +9,7 @@ This Python-based terminal game puts your Linux knowledge to the test — and cr
 ## 🎮 Game Features
 
 - 🧩 15 interactive questions on Linux commands, history, and tools
-- ⌨️ Free-type input (no boring MCQs — prove you really know your stuff!)
+- ⌨️ Free-type input + mcqs (prove you really know your stuff!)
 - ✨ Personalized feedback for each answer
 - 🎭 Immersive fantasy-style narrative with emojis and themed commentary
 - 🔚 Option to quit the challenge at any time — but glory awaits the finishers!
