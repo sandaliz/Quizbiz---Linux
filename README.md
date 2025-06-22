@@ -59,8 +59,9 @@ Download Python from the official site:
 
 ---
 
-###🌟 Support & Contributions
-⭐ Star this repo if you enjoyed the game!
+### 🌟 Support & Contributions
+⭐ Star this repo if you enjoyed the game!  
 🛠️ Want to add new questions or features? Pull requests are welcome!
+
 
 
