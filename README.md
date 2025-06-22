@@ -11,8 +11,8 @@ This Python-based terminal game puts your Linux knowledge to the test — and cr
 - 🧩 15 interactive questions on Linux commands, history, and tools
 - ⌨️ Free-type input + mcqs (prove you really know your stuff!)
 - ✨ Personalized feedback for each answer
-- 🎭 Immersive fantasy-style narrative with emojis and themed commentary
-- 🔚 Option to quit the challenge at any time — but glory awaits the finishers!
+- 🎭 Immersive fantasy style narrative with emojis and themed commentary
+- 🔚 Option to quit the challenge at any time - but glory awaits the finishers!
 
 ---
 
