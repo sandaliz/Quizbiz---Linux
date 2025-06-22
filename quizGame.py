@@ -1,3 +1,7 @@
+import json
+from datetime import datetime
+import os
+
 print("🌍 Welcome, brave explorer! You've stumbled upon the gates of the **Linux Temple** 🏛️, where only the wise survive the command-line challenge! 🧠⚔️")
 print("To earn your title as a Terminal Tactician 🧙‍♀️, you must prove your knowledge in the ancient art of Linux!")
 
@@ -9,20 +13,33 @@ if play != "yes":
 
 print("🔥 Your journey begins now... May the `man` pages guide you. 📜🐧\n")
 
-def ask_question(q_num, question, correct_answer, wrong_responses):
+def ask_question(q_num, question, correct_answer, wrong_responses, options=None):
     print(f"🧩 Question {q_num}: {question}")
-    answer = input("⚔️ Your answer (type it or 'quit' to exit): ").strip().lower()
-
-    if answer == "quit":
-        print("🛑 You have chosen to retreat from the Linux Temple. Farewell, warrior! 🏕️")
-        quit()
-
-    if answer == correct_answer.lower():
-        print("✅ Well done, you’ve proven your knowledge!\n")
-        return True
+    if options:
+        for letter, option_text in options.items():
+            print(f"  {letter}) {option_text}")
+        answer = input("⚔️ Your answer (letter or 'quit'): ").strip().lower()
+        if answer == "quit":
+            print("🛑 You have chosen to retreat from the Linux Temple. Farewell, warrior! 🏕️")
+            quit()
+        if answer == correct_answer:
+            print("✅ Well done!\n")
+            return True
+        else:
+            print(f"❌ {wrong_responses.get(answer, 'Hmm, that’s not quite right. Keep trying!')}\n")
+            return False
     else:
-        print(f"❌ {wrong_responses.get(answer, 'Hmm, that’s not quite right. Keep trying!')}\n")
-        return False
+        answer = input("⚔️ Your answer (or type 'quit' to exit): ").strip().lower()
+        if answer == "quit":
+            print("🛑 You have chosen to retreat from the Linux Temple. Farewell, warrior! 🏕️")
+            quit()
+        if answer == correct_answer.lower():
+            print("✅ Well done!\n")
+            return True
+        else:
+            print(f"❌ {wrong_responses.get(answer, 'Hmm, that’s not quite right. Keep trying!')}\n")
+            return False
+
 
 score = 0
 
@@ -48,13 +65,14 @@ questions = [
         }
     },
     {
-        "q_num": 3,
+       "q_num": 3,
         "question": "What does `chmod` do?",
-        "correct": "change file permissions",
+        "options": {"a": "Change file permissions", "b": "List files", "c": "Delete files", "d": "Rename files"},
+        "correct": "a",
         "wrong_responses": {
-            "list files": "`ls` lists files, it doesn't change permissions.",
-            "delete files": "`rm` removes files, not permissions.",
-            "rename files": "`mv` moves or renames files, not change permissions."
+            "b": "`ls` lists files, it doesn't change permissions.",
+            "c": "`rm` removes files, not permissions.",
+            "d": "`mv` moves or renames files, not change permissions."
         }
     },
     {
@@ -69,7 +87,7 @@ questions = [
     },
     {
         "q_num": 5,
-        "question": "How do you check available disk space?",
+        "question": "How do you check available disk space?(enter the relevant command)",
         "correct": "df",
         "wrong_responses": {
             "free": "`free` shows memory usage, not disk space.",
@@ -90,11 +108,12 @@ questions = [
     {
         "q_num": 7,
         "question": "Who created Linux?",
-        "correct": "linus torvalds",
+        "options": {"a": "Linus Torvalds", "b": "Bill Gates", "c": "Richard Stallman", "d": "Ken Thompson"},
+        "correct": "a",
         "wrong_responses": {
-            "bill gates": "Bill Gates is known for Windows, not Linux.",
-            "richard stallman": "Richard Stallman founded the Free Software Foundation, but didn’t create Linux.",
-            "ken thompson": "Ken Thompson worked on Unix, not Linux."
+            "b": "Bill Gates is known for Windows, not Linux.",
+            "c": "Richard Stallman founded the Free Software Foundation, but didn’t create Linux.",
+            "d": "Ken Thompson worked on Unix, not Linux."
         }
     },
     {
@@ -155,29 +174,40 @@ questions = [
     },
     {
         "q_num": 14,
-        "question": "What does “sudo” allow you to do?",
-        "correct": "run commands as superuser",
-        "wrong_responses": {
-            "schedule tasks": "`cron` schedules tasks, not sudo.",
-            "copy files": "`cp` copies files.",
-            "remove directories": "`rm` removes files/directories."
+    "question": "What does “sudo” allow you to do?",
+    "options": {
+        "a": "Copy files",
+        "b": "Schedule tasks",
+        "c": "Run commands as superuser",
+        "d": "Remove directories"
+    },
+    "correct": "a",
+    "wrong_responses": {
+        "b": "`cron` schedules tasks, not sudo.",
+        "c": "`cp` copies files.",
+        "d": "`rm` removes files/directories."
         }
     },
     {
         "q_num": 15,
         "question": "Before naming it Linux, Torvalds called it what?",
-        "correct": "freax",
+        "options": {"a": "Freax", "b": "Maniax", "c": "Finnix", "d": "Torvalx"},
+        "correct": "a",
         "wrong_responses": {
-            "maniax": "Maniax isn’t correct.",
-            "finnix": "Finnix is a Linux distro, but not the original name.",
-            "torvalx": "Torvalx is a made-up name."
+            "b": "Maniax isn’t correct.",
+            "c": "Finnix is a Linux distro, but not the original name.",
+            "d": "Torvalx is a made-up name."
         }
     }
 ]
 
 for q in questions:
-    if ask_question(q["q_num"], q["question"], q["correct"], q["wrong_responses"]):
-        score += 1
+    if "options" in q:
+        if ask_question(q["q_num"], q["question"], q["correct"], q["wrong_responses"], q["options"]):
+            score += 1
+    else:
+        if ask_question(q["q_num"], q["question"], q["correct"], q["wrong_responses"]):
+            score += 1
 
 print(f"🎉 You've completed the Linux Temple Quiz! Your score: {score}/{len(questions)}")
 
@@ -188,3 +218,43 @@ elif score >= len(questions) / 2:
     print("Not bad! Keep sharpening those skills! ⚔️")
 else:
     print("Keep practicing amateur! The Terminal Temple awaits your return.")
+
+def load_leaderboard(filename="leaderboard.json"):
+    if not os.path.exists(filename):
+        return []
+    with open(filename, "r") as f:
+        return json.load(f)
+
+def save_leaderboard(data, filename="leaderboard.json"):
+    with open(filename, "w") as f:
+        json.dump(data, f, indent=4)
+
+def update_leaderboard(name, score):
+    leaderboard = load_leaderboard()
+    leaderboard.append({
+        "name": name,
+        "score": score,
+        "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    })
+    leaderboard.sort(key=lambda x: (-x["score"], x["date"]), reverse=False)
+
+    leaderboard = leaderboard[:5] #only top 5
+    save_leaderboard(leaderboard)
+    return leaderboard
+
+def display_leaderboard(leaderboard):
+    print("\n🏅 Top Scores - Linux Temple Leaderboard 🏅")
+    print("-" * 40)
+    for i, entry in enumerate(leaderboard, 1):
+        print(f"{i}. {entry['name']} — Score: {entry['score']} — {entry['date']}")
+    print("-" * 40)
+
+player_name = input("\n📝 Enter your name to record your score (or type 'skip' to skip): ").strip()
+if player_name.lower() != "skip" and player_name != "":
+    updated_leaderboard = update_leaderboard(player_name, score)
+    display_leaderboard(updated_leaderboard)
+else:
+    print("⚠️ Score not recorded. Thank you for playing!")
+
+print("\n🛡️ Safe travels, warrior! Until next time... 🐧")
+
